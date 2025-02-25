@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "WebUi/WebUi.csproj",
+      "src": "WebUi.csproj",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "bin/Release/net8.0/publish/wwwroot"
