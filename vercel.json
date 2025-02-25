@@ -1,0 +1,15 @@
+{
+  "builds": [
+    {
+      "src": "WebUi/WebUi.csproj",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "bin/Release/net8.0/publish/wwwroot"
+      }
+    }
+  ],
+  "env": {
+    "DOTNET_ROOT": "/usr/local/share/dotnet",
+    "PATH": "/usr/local/share/dotnet:/usr/local/bin:/usr/bin:/bin"
+  }
+}
