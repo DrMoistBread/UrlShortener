@@ -1,0 +1,61 @@
+@page "/shorten"
+
+@using WebApi.Services
+@inject UrlShorteningService UrlShorteningService
+@inject NavigationManager MyNavigationManager
+@inject IJSRuntime JS
+
+<h3 class="title">URL Shortener</h3>
+
+<div class="container">
+    <label for="originalUrl" class="label">Enter URL:</label>
+    <input id="originalUrl" @bind="_originalUrl" class="input" />
+    <button @onclick="ShortenUrl" class="button">Shorten</button>
+
+    @if (!string.IsNullOrEmpty(_shortUrl))
+    {
+        <div>Shortened URL: <a href="r/@_shortUrl" target="_blank">@_fullShortUrl</a>
+            <span @onclick="CopyLink" style="cursor: pointer; position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16h13a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                
+                @if (_showTooltip)
+                {
+                    <div class="custom-tooltip">
+                        @_tooltipText
+                    </div>
+                }
+            </span> 
+        </div>
+    }
+</div>
+
+@code {
+    
+    private string _originalUrl = string.Empty;
+    private string _shortUrl = string.Empty;
+    private string _fullShortUrl = string.Empty;
+    private string _tooltipText = "Copied";
+    private bool _showTooltip;
+
+    
+    private async Task CopyLink()
+    {
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", _fullShortUrl);
+        _showTooltip = true;
+        StateHasChanged();
+
+        await Task.Delay(2000);
+        _showTooltip = false;
+        StateHasChanged();
+    }
+
+
+
+    private async Task ShortenUrl()
+    {
+        _shortUrl = await UrlShorteningService.ShortenUrl(_originalUrl);
+        _fullShortUrl = string.Concat(MyNavigationManager.BaseUri,"r/", _shortUrl);
+    }
+}

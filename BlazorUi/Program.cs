@@ -1,7 +1,7 @@
+using BlazorUi.Components;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Services;
-using WebUi.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Add services to the container
+
 builder.Services.AddDbContext<UrlContext>(options => options.UseInMemoryDatabase("UrlShortener"));
 builder.Services.AddScoped<UrlShorteningService>();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -27,11 +28,7 @@ if (!app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-
 app.UseStaticFiles();
-
-
-
 
 app.UseRouting();
 app.UseAntiforgery();

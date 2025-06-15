@@ -1,0 +1,117 @@
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+    color: #2d2d2d;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 2.8em;
+    color: #3a7bd5;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.input {
+    padding: 12px;
+    font-size: 1em;
+    width: 320px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #3a7bd5;
+    box-shadow: 0 0 0 3px rgba(58,123,213,0.15);
+}
+
+.button, .copy-btn {
+    padding: 10px 24px;
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(145deg, #3a7bd5, #00d2ff);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(58, 123, 213, 0.2);
+}
+
+.button:hover, .copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(58, 123, 213, 0.3);
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #3a7bd5;
+}
+
+.result a {
+    color: #2678c0;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.3s;
+}
+
+.result a:hover {
+    border-color: #2678c0;
+}
+
+.info-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+    font-size: 1.1em;
+    color: #444;
+}
+
+.info-section li {
+    margin-bottom: 12px;
+}
+
+.cta {
+    margin-top: 40px;
+}
+
+.short-url-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    z-index: 100;
+    opacity: 0.95;
+    pointer-events: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
