@@ -16,6 +16,7 @@ namespace WebUi.Controllers
         [HttpGet("r/{shortUrl}")]
         public async Task<IActionResult> RedirectShortUrl(string shortUrl)
         {
+           
             var originalUrl = await _urlShorteningService.GetOriginalUrl(shortUrl);
 
             return Redirect(originalUrl);

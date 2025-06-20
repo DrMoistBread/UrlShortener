@@ -55,6 +55,10 @@
 
     private async Task ShortenUrl()
     {
+        if (!_originalUrl.StartsWith("Http"))
+        {
+            _originalUrl = "https://" + _originalUrl;
+        }
         _shortUrl = await UrlShorteningService.ShortenUrl(_originalUrl);
         _fullShortUrl = string.Concat(MyNavigationManager.BaseUri,"r/", _shortUrl);
     }
