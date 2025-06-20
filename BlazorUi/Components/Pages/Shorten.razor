@@ -55,7 +55,7 @@
 
     private async Task ShortenUrl()
     {
-        if (!_originalUrl.StartsWith("Http"))
+        if (!_originalUrl.ToLower().StartsWith("http"))
         {
             _originalUrl = "https://" + _originalUrl;
         }
