@@ -10,4 +10,8 @@
       <ProjectReference Include="..\WebApi\WebApi.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="PinguApps.Blazor.QRCode" Version="1.1.4" />
+    </ItemGroup>
+
 </Project>

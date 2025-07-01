@@ -1,17 +1,25 @@
 @page "/shorten"
 
 @using WebApi.Services
+@using PinguApps.Blazor.QRCode
 @inject UrlShorteningService UrlShorteningService
 @inject NavigationManager MyNavigationManager
 @inject IJSRuntime JS
+
 
 <h3 class="title">URL Shortener</h3>
 
 <div class="container">
     <label for="originalUrl" class="label">Enter URL:</label>
     <input id="originalUrl" @bind="_originalUrl" class="input" />
-    <button @onclick="ShortenUrl" class="button">Shorten</button>
-
+    <div>
+        <button @onclick="ShortenUrl" class="button">Shorten</button>
+        @if (!string.IsNullOrEmpty(_shortUrl))
+        {
+        <button @onclick="DownloadQr" class="button">Download QRCode</button>
+            
+        }
+    </div>
     @if (!string.IsNullOrEmpty(_shortUrl))
     {
         <div>Shortened URL: <a href="r/@_shortUrl" target="_blank">@_fullShortUrl</a>
@@ -26,9 +34,14 @@
                         @_tooltipText
                     </div>
                 }
-            </span> 
+            </span>
+            
         </div>
+    <QRCode Data="@_fullShortUrl" Size="200px" Id="myQrSvg" ErrorCorrection="ErrorCorrection.High" ForeColor="#1a1a1a" BackColor="#f9f9f9" />
+        
     }
+    
+  
 </div>
 
 @code {
@@ -51,6 +64,11 @@
         StateHasChanged();
     }
 
+
+    private async Task DownloadQr()
+    {
+        await JS.InvokeVoidAsync("downloadQrAsPng", "myQrSvg", "MyQRCode.png");
+    }
 
 
     private async Task ShortenUrl()
