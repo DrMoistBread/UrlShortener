@@ -14,7 +14,7 @@ namespace WebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Url>().ToTable("Url");
+            modelBuilder.Entity<Url>().ToTable("urls");
         }
     }
 }

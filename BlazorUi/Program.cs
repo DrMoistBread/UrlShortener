@@ -10,7 +10,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 
-builder.Services.AddDbContext<UrlContext>(options => options.UseInMemoryDatabase("UrlShortener"));
+builder.Services.AddDbContext<UrlContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresDb")));
 builder.Services.AddScoped<UrlShorteningService>();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
